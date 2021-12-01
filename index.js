@@ -24,8 +24,15 @@ module.exports = (api, options) => {
     webpackConfig.devServer
       .headers({
         "Access-Control-Allow-Origin": "*",
-      })
-      .set("disableHostCheck", true);
+      });
+    
+    if (lessThanWebpack5()) {
+      webpackConfig.devServer
+        .set("disableHostCheck", true);
+    } else {
+      webpackConfig.devServer
+        .set("firewall", false);
+    }
 
     webpackConfig.optimization.delete("splitChunks");
 
