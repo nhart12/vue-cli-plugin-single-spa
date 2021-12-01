@@ -31,7 +31,7 @@ module.exports = (api, options) => {
         .set("disableHostCheck", true);
     } else {
       webpackConfig.devServer
-        .set("firewall", false);
+        .set("allowedHosts", "all");
     }
 
     webpackConfig.optimization.delete("splitChunks");
